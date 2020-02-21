@@ -59,6 +59,11 @@ gpio.on('change', (ch, value) => {
                 break;
             case BTN_PLAY_TOGGLE:
                 console.log("play_toggle",status);
+                if(status==='play'){
+                    socket.emit('pause');
+                }else if(status==='pause'){
+                    socket.emit('play');
+                }
                 break;
         }
     }
