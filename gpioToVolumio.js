@@ -1,3 +1,5 @@
+let io=require('socket.io-client');
+let socket= io.connect('http://localhost:3000');
 let gpio = require('rpi-gpio');
 
 let LED_PIN_1 = 19; // GPIO10
@@ -5,6 +7,8 @@ let LED_PIN_2 = 21; // GPIO9
 let LED_PIN_3 = 23; // GPIO11
 const BUTTON_PIN_1 = 29; //GPIO5
 
+let volume = 0;
+let vol_delta = 1;
 
 const BTN_VOL_UP = 31; //GPIO6  VOLUME UP
 const BTN_VOL_DOWN = 33; //GPIO13 VOLUME DOWN
@@ -19,6 +23,15 @@ let led3On = true;
 process.stdout.write("test");
 
 console.log("gpioToVolumio:INIT");
+socket.emit('getState', '');
+let status = "null";
+
+socket.on('pushState',function(data){
+    console.log(data.status);
+    status = data.status ;
+    volume = data.volume;
+});
+
 
 gpio.on('change', (ch, value) => {
 
@@ -28,9 +41,21 @@ gpio.on('change', (ch, value) => {
         switch(ch){
             case BTN_VOL_UP:
                 console.log("volume_up!");
+                volume = volume + vol_delta*3;
+                volume = volume > 100 ? 100 : volume;
+                console.log('delta', volume);
+                socket.emit('volume', volume);
+                socket.emit('getState', '');
                 break;
+
             case BTN_VOL_DOWN:
                 console.log("volume_down!");
+                volume = volume - vol_delta*3;
+                volume = volume < 0 ? 0 : volume;
+                console.log('delta', volume);
+                socket.emit('volume', volume);
+                socket.emit('getState', '');
+
                 break;
             case BTN_PLAY_TOGGLE:
                 console.log("play_toggle");
