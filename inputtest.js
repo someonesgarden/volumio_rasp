@@ -1,8 +1,8 @@
-var gpio = require('rpi-gpio');
+let gpio = require('rpi-gpio');
 
-var LED_PIN_1 = 19; // GPIO10
-var LED_PIN_2 = 21; // GPIO9
-var LED_PIN_3 = 23; // GPIO11
+let LED_PIN_1 = 19; // GPIO10
+let LED_PIN_2 = 21; // GPIO9
+let LED_PIN_3 = 23; // GPIO11
 
 const BUTTON_PIN_1 = 29; //GPIO5
 const BUTTON_PIN_2 = 31; //GPIO6
@@ -11,9 +11,9 @@ const BUTTON_PIN_4 = 37; //GPIO26
 
 const LED_BLINK_DELAY_MS = 1000;
 
-var led1On = true;
-var led2On = true;
-var led3On = true;
+let led1On = true;
+let led2On = true;
+let led3On = true;
 
 process.stdout.write("test");
 console.log("test")
