@@ -10,7 +10,7 @@ const BUTTON_PIN_1 = 29; //GPIO5
 let volume = 0;
 let vol_delta = 1;
 
-const BTN_VOL_UP = 31; //GPIO6  VOLUME UP
+const BTN_VOL_UP = 29; //GPIO6  VOLUME UP
 const BTN_VOL_DOWN = 33; //GPIO13 VOLUME DOWN
 const BTN_PLAY_TOGGLE = 37; //GPIO26 PLAYTOGGLE
 
