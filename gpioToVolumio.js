@@ -41,7 +41,7 @@ gpio.on('change', (ch, value) => {
         switch(ch){
             case BTN_VOL_UP:
                 console.log("volume_up!");
-                volume = volume + vol_delta*3;
+                volume = volume + vol_delta;
                 volume = volume > 100 ? 100 : volume;
                 console.log('delta', volume);
                 socket.emit('volume', volume);
@@ -50,7 +50,7 @@ gpio.on('change', (ch, value) => {
 
             case BTN_VOL_DOWN:
                 console.log("volume_down!");
-                volume = volume - vol_delta*3;
+                volume = volume - vol_delta;
                 volume = volume < 0 ? 0 : volume;
                 console.log('delta', volume);
                 socket.emit('volume', volume);
@@ -58,7 +58,7 @@ gpio.on('change', (ch, value) => {
 
                 break;
             case BTN_PLAY_TOGGLE:
-                console.log("play_toggle");
+                console.log("play_toggle",status);
                 break;
         }
     }
