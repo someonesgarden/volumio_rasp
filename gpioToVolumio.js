@@ -27,15 +27,16 @@ socket.emit('getState', '');
 let status = "null";
 
 socket.on('pushState',function(data){
-    status = data.status ;
+    status = data.status;
     volume = data.volume;
 });
 
 
+gpio.setup(BTN_VOL_UP, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(BTN_VOL_DOWN, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(BTN_PLAY_TOGGLE, gpio.DIR_IN, gpio.EDGE_BOTH);
+
 gpio.on('change', (ch, value) => {
-
-    console.log('read channel : '+ch+', value : '+value);
-
     if(value){
         switch(ch){
             case BTN_VOL_UP:
@@ -61,17 +62,22 @@ gpio.on('change', (ch, value) => {
 
                 if(status==='play'){
                     socket.emit('pause');
+                    gpio.write(LED_GREEN, true);
+                    gpio.write(LED_RED, true);
+                    gpio.write(LED_BLUE, false);
+                    led1On = true;
                 }else{
                     socket.emit('play');
+                    gpio.write(LED_BLUE, true);
+                    gpio.write(LED_RED, false);
+                    gpio.write(LED_GREEN, false);
                 }
                 break;
         }
     }
 });
 
-gpio.setup(BTN_VOL_UP, gpio.DIR_IN, gpio.EDGE_BOTH);
-gpio.setup(BTN_VOL_DOWN, gpio.DIR_IN, gpio.EDGE_BOTH);
-gpio.setup(BTN_PLAY_TOGGLE, gpio.DIR_IN, gpio.EDGE_BOTH);
+
 
 
 // gpio.setup(LED_RED, gpio.DIR_OUT, () => {
