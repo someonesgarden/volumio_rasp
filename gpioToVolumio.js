@@ -35,7 +35,7 @@ socket.on('pushState',function(data){
 
 gpio.on('change', (ch, value) => {
 
-    //console.log('read channel : '+ch+', value : '+value);
+    console.log('read channel : '+ch+', value : '+value);
 
     if(value){
         switch(ch){
