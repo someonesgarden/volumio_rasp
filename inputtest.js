@@ -3,7 +3,6 @@ let gpio = require('rpi-gpio');
 let LED_PIN_1 = 19; // GPIO10
 let LED_PIN_2 = 21; // GPIO9
 let LED_PIN_3 = 23; // GPIO11
-
 const BUTTON_PIN_1 = 29; //GPIO5
 const BUTTON_PIN_2 = 31; //GPIO6
 const BUTTON_PIN_3 = 33; //GPIO13
