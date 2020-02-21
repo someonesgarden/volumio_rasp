@@ -4,9 +4,11 @@ let LED_PIN_1 = 19; // GPIO10
 let LED_PIN_2 = 21; // GPIO9
 let LED_PIN_3 = 23; // GPIO11
 const BUTTON_PIN_1 = 29; //GPIO5
-const BUTTON_PIN_2 = 31; //GPIO6
-const BUTTON_PIN_3 = 33; //GPIO13
-const BUTTON_PIN_4 = 37; //GPIO26
+
+
+const BTN_VOL_UP = 31; //GPIO6  VOLUME UP
+const BTN_VOL_DOWN = 33; //GPIO13 VOLUME DOWN
+const BTN_PLAY_TOGGLE = 37; //GPIO26 PLAYTOGGLE
 
 const LED_BLINK_DELAY_MS = 1000;
 
@@ -15,16 +17,33 @@ let led2On = true;
 let led3On = true;
 
 process.stdout.write("test");
-console.log("test")
+
+console.log("gpioToVolumio:INIT");
 
 gpio.on('change', (ch, value) => {
-    console.log('read channel : '+ch+', value : '+value);
+
+    //console.log('read channel : '+ch+', value : '+value);
+
+    if(value){
+        switch(ch){
+            case BTN_VOL_UP:
+                console.log("volume_up!");
+                break;
+            case BTN_VOL_DOWN:
+                console.log("volume_down!");
+                break;
+            case BTN_PLAY_TOGGLE:
+                console.log("play_toggle");
+                break;
+        }
+    }
 });
 
 gpio.setup(BUTTON_PIN_1, gpio.DIR_IN, gpio.EDGE_BOTH);
-gpio.setup(BUTTON_PIN_2, gpio.DIR_IN, gpio.EDGE_BOTH);
-gpio.setup(BUTTON_PIN_3, gpio.DIR_IN, gpio.EDGE_BOTH);
-gpio.setup(BUTTON_PIN_4, gpio.DIR_IN, gpio.EDGE_BOTH);
+
+gpio.setup(BTN_VOL_UP, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(BTN_VOL_DOWN, gpio.DIR_IN, gpio.EDGE_BOTH);
+gpio.setup(BTN_PLAY_TOGGLE, gpio.DIR_IN, gpio.EDGE_BOTH);
 
 gpio.setup(LED_PIN_1, gpio.DIR_OUT, () => {
     setInterval(() => {
