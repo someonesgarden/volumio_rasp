@@ -24,3 +24,10 @@ echo "start!"
 
 この中にあるindex.jsファイルにspotify用のclientIdとclientSecretを入力する欄があるので、
 ここは自分のアプリケーションIDを入れないと正常にRefreshできない。
+
+
+### VOLUMIOのネットワーク情報は
+/data/configuration/system_controller/network/config.json
+
+ここにある.
+

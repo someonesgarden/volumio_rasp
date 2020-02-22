@@ -5,9 +5,9 @@ let gpio = require('rpi-gpio');
 let LED_RED     = 19; // GPIO10
 let LED_GREEN   = 21; // GPIO9
 //let LED_BLUE    = 23; // GPIO11
-const BTN_VOL_DOWN    = 36; //GPIO16  VOLUME UP
-const BTN_PLAY_TOGGLE = 33; //GPIO13 VOLUME DOWN
-const BTN_VOL_UP      = 37; //GPIO26 PLAYTOGGLE
+const BTN_VOL_DOWN    = 36; //GPIO16  VOLUME DOWN
+const BTN_PLAY_TOGGLE = 33; //GPIO13 PLAYTOGGLE
+const BTN_VOL_UP      = 37; //GPIO26  VOLUME UP
 
 const LED_BLINK_DELAY_MS = 1000;
 let volume      = 0;
