@@ -20,3 +20,7 @@ echo "start!"
  /volumio/myapp/pyudev_app.py  &
  ```
 
+### /data/plugins/music_service/spop
+
+この中にあるindex.jsファイルにspotify用のclientIdとclientSecretを入力する欄があるので、
+ここは自分のアプリケーションIDを入れないと正常にRefreshできない。
