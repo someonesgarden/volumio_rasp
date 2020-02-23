@@ -30,7 +30,7 @@ let debounceFunc = ((callback_)=> {
     return ()=> {
         clearTimeout(timer);
         timer = setTimeout(()=> {
-            callback_();
+            //callback_();
         }, interval);
     };
 })(callback);
