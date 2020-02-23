@@ -54,7 +54,7 @@ mv /volumio/volumio_rasp /volumio/myapp
 chmod 777 -R /volumio/myapp
 ```
 
-10) 自動起動ファイルを作成
+１０) 自動起動ファイルを作成
 
 ```aidl
 vim /usr/local/bin/bot.sh
@@ -80,6 +80,32 @@ bot.sh
 ```
 と追加。
 
+
+１２）node-redをインストール
+https://detail.chiebukuro.yahoo.co.jp/qa/question_detail/q10196568065
+```aidl
+sudo npm install -g --unsafe-perm node-red
+```
+自動起動するために、node.jsのプロセスマネージャをインストール。
+
+```aidl
+sudo npm install -g pm2
+```
+
+１３）node-redをバックグラウンドで動かすプロセスをpm2に登録
+root権限がないと、node-redは自動起動されなかったので、
+そのあたりもやる。
+
+```aidl
+sudo su
+cd /root
+pm2 start /bin/node-red --node-args="--max-old-space-size=128" -- -v
+```
+１４）起動時に実行することをPM2に指示する。
+```aidl
+pm2 save
+pm2 startup
+```
 
 ### /data/plugins/music_service/spop
 この中にあるindex.jsファイルにspotify用のclientIdとclientSecretを入力する欄があるので、

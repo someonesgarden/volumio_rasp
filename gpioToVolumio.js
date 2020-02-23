@@ -23,6 +23,17 @@ socket.on('pushState',function(data){
     volume = data.volume;
 });
 
+let debounceFunc = ((callback_)=> {
+    // 停止させたい間隔
+    let interval = 200;
+    let timer;
+    return ()=> {
+        clearTimeout(timer);
+        timer = setTimeout(()=> {
+            callback_();
+        }, interval);
+    };
+})(callback);
 
 gpio.setup(BTN_VOL_UP, gpio.DIR_IN, gpio.EDGE_BOTH);
 gpio.setup(BTN_VOL_DOWN, gpio.DIR_IN, gpio.EDGE_BOTH);
@@ -52,11 +63,14 @@ gpio.on('change', (ch, value) => {
             case BTN_PLAY_TOGGLE:
                 console.log("play_toggle",status);
 
-                if(status==='play'){
-                    socket.emit('pause');
-                }else{
-                    socket.emit('play');
-                }
+                debounceFunc(()=>{
+                    if(status==='play'){
+                        socket.emit('pause');
+                    }else{
+                        socket.emit('play');
+                    }
+                });
+
                 break;
         }
     }
