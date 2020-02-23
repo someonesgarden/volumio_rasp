@@ -35,12 +35,10 @@ import codecs
 
 class MyCardReader(object):
 
-    def __init__(self, name):
-        self.name = name
+    def __init__(self):
         url = 'http://spotbrain.org/data/volumio/felica.json'
         resStr = self.dataGet(url)
-        self.keymap = self.\
-            jsonConversion(resStr)
+        self.keymap = self.jsonConversion(resStr)
 
     def jsonConversion(self, jsonStr):
         # webAPIから取得したJSONデータをpythonで使える形に変換する
