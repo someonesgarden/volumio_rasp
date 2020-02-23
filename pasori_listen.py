@@ -41,17 +41,10 @@ class MyCardReader(object):
         self.keymap = self.jsonConversion(resStr)
 
     def jsonConversion(self, jsonStr):
-        # webAPIから取得したJSONデータをpythonで使える形に変換する
         data = json.loads(jsonStr)
         return data
 
     def dataGet(self,url):
-        # URIスキーム
-        # URIパラメータの文字列の作成
-        #paramStr = urllib.urlencode(param)  # type=json&user=tamago324_pad と整形される
-
-        # 読み込むオブジェクトの作成
-        #readObj = urllib.urlopen(url + paramStr)
         readObj = urllib.urlopen(url)
 
         response = readObj.read()
