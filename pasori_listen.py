@@ -51,7 +51,10 @@ class MyCardReader(object):
 
     def on_connect(self, tag):
         print("touched")
-        self.idm = binascii.hexlify(tag.idm)
+        if tag.idm is not None:
+            self.idm = binascii.hexlify(tag.idm)
+        else:
+            print(tag)
         return True
 
     def read_id(self):
