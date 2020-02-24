@@ -77,7 +77,7 @@ def called():
         # print(vars(cr))
         if hasattr(cr, 'idm'):
             print("idm is:"+cr.idm)
-            if hasattr(cr.keymap, cr.idm):
+            if cr.keymap[cr.idm] is not None:
                 print(cr.keymap[cr.idm])
                 cr.call_volumio(cr.idm)
 
