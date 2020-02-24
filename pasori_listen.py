@@ -51,7 +51,7 @@ class MyCardReader(object):
 
     def on_connect(self, tag):
         print("touched")
-        if tag.idm is not None:
+        if hasattr(tag, 'idm'):
             self.idm = binascii.hexlify(tag.idm)
         else:
             print(tag)
@@ -77,7 +77,7 @@ def called():
         cr.read_id()
         print("released")
         print(cr)
-        if cr.idm is not None:
+        if hasattr(cr, 'idm'):
             print(cr.idm)
             print(cr.keymap[cr.idm])
             cr.call_volumio(cr.idm)
