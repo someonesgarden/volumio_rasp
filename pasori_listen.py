@@ -79,8 +79,9 @@ def called():
         print(cr)
         if hasattr(cr, 'idm'):
             print(cr.idm)
-            print(cr.keymap[cr.idm])
-            cr.call_volumio(cr.idm)
+            if hasattr(cr.keymap, cr.idm):
+                print(cr.keymap[cr.idm])
+                cr.call_volumio(cr.idm)
 
 
 if __name__ == '__main__':
