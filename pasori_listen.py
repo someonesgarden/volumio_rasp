@@ -46,9 +46,7 @@ class MyCardReader(object):
 
     def dataGet(self,url):
         readObj = urllib.urlopen(url)
-
         response = readObj.read()
-
         return response
 
     def on_connect(self, tag):
