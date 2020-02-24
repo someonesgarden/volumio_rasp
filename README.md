@@ -21,10 +21,14 @@ ssh volumio@volumio.local
 
 ５）pasoli用ライブラリのインストール
 ```aidl
-$ sudo apt-get install python-pip
-$ sudo pip2 install --upgrade pip
-$ sudo pip2 install nfcpy
-$ pip show nfcpy
+sudo apt-get install python-pip
+sudo pip2 install --upgrade pip
+sudo pip2 install nfcpy
+pip show nfcpy
+
+//pasoliデバイスが認証されるために/etc/udev/rules.dに登録する必要がある。
+sudo sh -c 'echo SUBSYSTEM==\"usb\", ACTION==\"add\", ATTRS{idVendor}==\"054c\", ATTRS{idProduct}==\"06c3\", GROUP=\"plugdev\" >> /etc/udev/rules.d/nfcdev.rules'
+
 ```
 
 ６）powermate用ライブラリのインストール
@@ -36,6 +40,7 @@ npm install node-powermate —save
 SSH権限なしでもpowermateを支えるための設定
 ```aidl
 sudo sh -c 'echo SUBSYSTEM==\"usb\", ATTRS{idVendor}==\"077d\", ATTRS{idProduct}==\"0410\", SYMLINK+=\"powermate\", MODE=\"660\", GROUP=\"input\" >> /etc/udev/rules.d/95-powermate.rules'
+
 ```
 
 ７）USB接続を認識するために、pyudevを使用する
