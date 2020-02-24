@@ -54,7 +54,7 @@ class MyCardReader(object):
         if hasattr(tag, 'idm'):
             self.idm = binascii.hexlify(tag.idm)
         else:
-            print(tag.ID)
+            print(tag)
         return True
 
     def read_id(self):
