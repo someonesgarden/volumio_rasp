@@ -56,11 +56,10 @@ class MyCardReader(object):
 
     def read_id(self):
         clf = nfc.ContactlessFrontend('usb')
-        print(clf)
-        # try:
-        #     clf.connect(rdwr={'on-connect': self.on_connect})
-        # finally:
-        #     clf.close()
+        try:
+            clf.connect(rdwr={'on-connect': self.on_connect})
+        finally:
+            clf.close()
 
 
     def call_volumio(self,id):
@@ -74,9 +73,11 @@ def called():
         print("touch card:")
         cr.read_id()
         print("released")
-        print(cr.idm)
-        print(cr.keymap[cr.idm])
-        cr.call_volumio(cr.idm)
+        print(cr)
+        if cr.idm is not None:
+            print(cr.idm)
+            print(cr.keymap[cr.idm])
+            cr.call_volumio(cr.idm)
 
 
 if __name__ == '__main__':
