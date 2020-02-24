@@ -74,9 +74,9 @@ def called():
         print("touch card:")
         cr.read_id()
         print("released:")
-        print(vars(cr))
+        # print(vars(cr))
         if hasattr(cr, 'idm'):
-            print(cr.idm)
+            print("idm is:"+cr.idm)
             if hasattr(cr.keymap, cr.idm):
                 print(cr.keymap[cr.idm])
                 cr.call_volumio(cr.idm)
