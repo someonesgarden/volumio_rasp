@@ -39,7 +39,6 @@ class MyCardReader(object):
         url = 'http://spotbrain.org/data/volumio/felica.json'
         resStr = self.dataGet(url)
         self.keymap = self.jsonConversion(resStr)
-        print(self.keymap)
 
     def jsonConversion(self, jsonStr):
         data = json.loads(jsonStr)
