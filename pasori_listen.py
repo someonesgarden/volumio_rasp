@@ -77,6 +77,7 @@ def called():
         cr.read_id()
         print("released")
         print(cr)
+        print(cr.keymap)
         if hasattr(cr, 'idm'):
             print(cr.idm)
             if hasattr(cr.keymap, cr.idm):
