@@ -63,6 +63,9 @@ chmod 777 -R /volumio/myapp
 
 ```aidl
 vim /usr/local/bin/bot.sh
+##正しく起動されるように。。
+chmod 777 /usr/local/bin/bot.sh
+
 ```
 ここに以下のように、gpioToVolumio.jsをnohupで自動起動し、
 USBの接続用に、/volumio/myapp/pyudev_app.pyも自動起動しておく。
@@ -112,6 +115,9 @@ pm2 save
 pm2 startup
 ```
 
+１５） git clone をしたあと、
+/volumio/myapp全てを
+chmod 777 -R * しないと起動されない！
 ### /data/plugins/music_service/spop
 この中にあるindex.jsファイルにspotify用のclientIdとclientSecretを入力する欄があるので、
 ここは自分のアプリケーションIDを入れないと正常にRefreshできない。
